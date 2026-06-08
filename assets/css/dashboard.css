@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Page Title -->
-    <title>Login - RinkSync</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/dashboard.css">
-
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
-    
-    <!-- Boot-Icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <!-- Preload -->
-     <link rel="preload" href="assets/css/dashboard.css">
-
-    
-</head>
-
-<style>
-
-     /* FONT */
+    /* FONT */
     .audiowide-regular {
         font-family: "Audiowide", sans-serif;
         font-weight: 400;
@@ -94,40 +65,3 @@
             rgba(255,255,255,0.3)
         );
     }
-
-    .page-container {
-        width: 80vw;
-        margin: auto;
-        margin-top: 4vh;
-    }
-
-    .form-container > h1 {
-        color: white;
-        font-family: "Audiowide";
-        font-weight: 100;
-        padding-left: 10px;
-    }
-
-
-
-
-
-</style>
-
-<body>
-
-    <div class="page-container">
-    <div class="form-container">
-
-        <h1>Welcome, [Skater Firstname]</h1>
-
-
-    </div>
-    </div>
-
-
-
-
-
-</body>
-</html>
