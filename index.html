@@ -235,7 +235,7 @@
 /* Individual snowflake */
 .snowflake {
     position: absolute;
-    top: -30px;
+    top: -10vh;
     color: white;
     user-select: none;
     animation-name: snowfall;
@@ -246,25 +246,11 @@
 }
 
 @keyframes snowfall {
-    0% {
-        transform: translateY(-20px) translateX(0);
-    }
-
-    25% {
-        transform: translateY(25vh) translateX(15px);
-    }
-
-    50% {
-        transform: translateY(50vh) translateX(-15px);
-    }
-
-    75% {
-        transform: translateY(75vh) translateX(20px);
-    }
-
-    100% {
-        transform: translateY(110vh) translateX(-10px);
-    }
+    0%   { transform: translateY(0)     translateX(0);   }
+    25%  { transform: translateY(35vh)  translateX(15px); }
+    50%  { transform: translateY(60vh)  translateX(-15px); }
+    75%  { transform: translateY(85vh)  translateX(20px); }
+    100% { transform: translateY(120vh) translateX(-10px); }
 }
 
   .tw {
