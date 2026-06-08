@@ -384,6 +384,14 @@ button:focus, select:focus {
     margin: auto;
 }
 
+#error-message {
+    font-size: 14px;
+    font-family: "Audiowide";
+    text-align: left;
+    margin-top: 1.25vh;
+    padding-left: 10px;
+}
+
 
 
 
@@ -448,6 +456,7 @@ button:focus, select:focus {
                 <div class="input-container">
                 <input type="password" placeholder="Confirm password..." class="input-field" required autocomplete="new-password" id="confirmPassword" name="confirmPassword">
                 <i class="bi bi-lock" id="myIcon"></i><br>
+                <p id="error-message" style="color: red; display: none;">Passwords do not match.</p>
                 </div>
 
                 <!-- SUBMIT BUTTON -->
@@ -465,7 +474,7 @@ button:focus, select:focus {
 
 
 
-
+<script src="password-confirm.js"></script>
 <script src="typewriter.js"></script>
 <script src="snow.js"></script>
 
