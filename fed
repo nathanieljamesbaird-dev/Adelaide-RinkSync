@@ -1,0 +1,29 @@
+
+    <!-- PAGE SETUP -->
+    <div class="pg-container">
+
+        <!-- PROGRAM LOGO -->
+        <img src="img/logo/RinkSync Logo.png" alt="">
+
+        <!-- FORM CONTAINER -->
+        <div class="form-container">
+
+            <!-- FORM TITLE -->
+            <h1>Rink-Sync</h1>
+
+            <form action="" method="post" class="form-setting">
+
+                <!-- USERNAME -->
+                <span><i class="b bi-person"></i><label>Username</label></span>
+                <input type="text" placeholder="username..." required>
+
+                <!-- PASSWORD -->
+                <span><i class="bi bi-lock"></i><label>Password</label></span>
+                <input type="password" placeholder="password..." required>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit">Login</button>
+
+            </form>
+        </div>
+    </div>
