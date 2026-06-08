@@ -356,15 +356,7 @@ button:focus, select:focus {
     gap: 2vh;
 }
 
-.footer-container > p, a {
-    color: white;
-    font-family: "Audiowide";
-    font-size: 14px;
-    margin: auto;
-    filter: brightness(75%);
-    cursor: pointer;
-    
-}
+
 
 .form-setting span > p  {
     font-family: "Audiowide";
@@ -373,6 +365,23 @@ button:focus, select:focus {
     color: white;
     margin: auto;
     filter: brightness(75%);
+}
+
+.forgot-btn {
+    font-family: "Audiowide";
+    font-weight: 100;
+    font-size: 14px;
+    color: white;
+    margin: auto;
+    filter: brightness(75%);
+}
+
+.signup-btn {
+    font-family: "Audiowide";
+    font-weight: 100;
+    font-size: 14px;
+    color: white;
+    margin: auto;
 }
 
 
@@ -416,8 +425,8 @@ button:focus, select:focus {
                 <!-- SUBMIT BUTTON -->
                 <button type="submit">Login</button>
                 <div class="footer-container">
-                <span><p>don't have an account?<a href="register.html"> Sign up</a></p></span>
-                <a>forgot password?</a>
+                <span><p>don't have an account?<a href="register.html" class="signup-btn"> Sign up</a></p></span>
+                <a class="forgot-btn">forgot password?</a>
                 </div>
 
             </form>
