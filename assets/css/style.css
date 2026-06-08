@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Page Title -->
-    <title>Signup - RinkSync</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
-    
-    <!-- Boot-Icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <!-- Preload -->
-     <link rel="preload" href="typewriter.js">
-     <link rel="preload" href="snow.js">
-     <link rel="preload" href="css/main.css">
-
-    
-</head>
-
-<style>
-
     /* FONT */
     .audiowide-regular {
         font-family: "Audiowide", sans-serif;
@@ -52,10 +21,10 @@
         gap: 4vh;
         max-width: 420px;
         width: 90%;
-        height: 100vh;
+        height: 60vh;
         border-radius: 1rem;
         margin: 0 auto;
-        margin-top: 5vh;
+        margin-top: 15vh;
     }
 
     .pg-container > img {
@@ -383,99 +352,3 @@ button:focus, select:focus {
     color: white;
     margin: auto;
 }
-
-#error-message {
-    font-size: 14px;
-    font-family: "Audiowide";
-    text-align: left;
-    margin-top: 1.25vh;
-    padding-left: 10px;
-}
-
-
-
-
-
-</style>
-
-<body>
-
-<div id="snow-container"></div>
-
-
-    <!-- PAGE SETUP -->
-    <div class="pg-container">
-
-        <!-- PROGRAM LOGO -->
-        <!-- <img src="img/logo/RinkSync Logo.png" alt=""> -->
-
-        <!-- FORM CONTAINER -->
-        <div class="form-container">
-
-            <!-- FORM TITLE -->
-            <div class="tw"><span id="t"></span><span class="cursor">|</span></div>
-            <!-- <h1>Rink-Sync</h1> -->
-
-            <form action="" method="post" class="form-setting">
-
-
-                <!-- SIGNUP PROCESS -->
-                
-                <!-- FIRSTNAME -->
-                <div class="input-container">
-                <input type="text" placeholder="First name..." class="input-field" name="fname" required>
-                <i class="bi bi-person" id="myIcon" class="input-icon"></i>
-                </div>
-
-                <!-- LASTNAME -->
-                <div class="input-container">
-                <input type="text" placeholder="Last name..." class="input-field" name="lname" required>
-                <i class="bi bi-person" id="myIcon" class="input-icon"></i>
-                </div>
-
-                <!-- EMAIL -->
-                <div class="input-container">
-                <input type="email" placeholder="Email..." class="input-field" name="user_email" required>
-                <i class="bi bi-envelope" id="myIcon" class="input-icon"></i>
-                </div>
-                
-                
-                <!-- USERNAME -->
-                <div class="input-container">
-                <input type="text" placeholder="Username..." class="input-field" required>
-                <i class="bi bi-person-circle" id="myIcon" class="input-icon"></i>
-                </div>
-
-                <!-- PASSWORD -->
-                <div class="input-container">
-                <input type="password" placeholder="Password..." class="input-field" required autocomplete="new-password" id="password" name="password">
-                <i class="bi bi-lock" id="myIcon"></i><br>
-                </div>
-
-                <!-- CONFIRM PASSWORD -->
-                <div class="input-container">
-                <input type="password" placeholder="Confirm password..." class="input-field" required autocomplete="new-password" id="confirmPassword" name="confirmPassword"><br>
-                <p id="error-message" style="color: red; display: none;">Passwords do not match.</p>
-                </div>
-
-                <!-- SUBMIT BUTTON -->
-                <button type="submit">Sign up</button>
-                <div class="footer-container">
-                <span><p>aleady have an account?<a href="index.html" class="signup-btn"> Sign in</a></p></span>
-                </div>
-
-
-            </form>
-        </div>
-    </div>
-
-
-
-
-
-<script src="assets/js/password-confirm.js"></script>
-<script src="assets/js/typewriter.js"></script>
-<script src="assets/js/snow.js"></script>
-
-</body>
-</html>
