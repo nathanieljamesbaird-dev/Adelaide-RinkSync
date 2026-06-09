@@ -65,3 +65,28 @@
             rgba(255,255,255,0.3)
         );
     }
+
+    /* 1. Ensure the wrapper acts as the anchor point for positioning */
+.input-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px; /* Adjust spacing as needed */
+}
+
+/* 2. Lock the icon to the far left side, vertically centred */
+.input-container .input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2; /* Ensures the icon sits cleanly on top of the input */
+  color: #666; /* Adjust your icon colour here */
+}
+
+/* 3. Add padding to the left side of the text field so characters don't overlap the icon */
+.input-container .input-field {
+  width: 100%;
+  padding: 12px;
+  padding-left: 40px; /* Crucial: leaves clear space for your icon on the left */
+  box-sizing: border-box;
+}

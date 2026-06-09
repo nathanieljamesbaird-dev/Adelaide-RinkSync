@@ -360,3 +360,10 @@ button:focus, select:focus {
     margin-top: 1.25vh;
     padding-left: 10px;
 }
+
+#passwordToggleIcon,
+#confirmToggleIcon {
+    pointer-events: auto;  /* clicks land on the icon, not through it */
+    cursor: pointer;
+    z-index: 5;            /* icon sits above the input */
+}

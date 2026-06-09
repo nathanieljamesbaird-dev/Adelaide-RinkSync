@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- Preload -->
-     <link rel="preload" href="js/typewriter.js">
-     <link rel="preload" href="js/snow.js">
-     <link rel="preload" href="assets/css/register.css">
+     <link rel="preload" href="asset/js/typewriter.js" as="script">
+     <link rel="preload" href="asset/js/snow.js" as="script">
+     <link rel="preload" href="assets/css/register.css" as="style">
 
     
 </head>
@@ -85,7 +85,8 @@
 
                 <!-- CONFIRM PASSWORD -->
                 <div class="input-container">
-                <input type="password" placeholder="Confirm password..." class="input-field" required autocomplete="new-password" id="confirmPassword" name="confirmPassword"><br>
+                <input type="password" placeholder="Confirm password..." class="input-field" required autocomplete="new-password" id="confirmPassword" name="confirmPassword">
+                <i class="bi bi-lock" id="confirmToggleIcon" style="cursor: pointer;"></i><br>
                 <p id="error-message" style="color: red; display: none;">Passwords do not match.</p>
                 </div>
 
@@ -109,25 +110,20 @@
 <script src="assets/js/snow.js"></script>
 
 <script>
-const passwordField = document.getElementById('password');
-// Target the unique icon ID
-const toggleIcon = document.getElementById('passwordToggleIcon');
+// Reusable padlock show/hide: bi-lock when hidden, bi-unlock when visible
+function setupReveal(inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const icon  = document.getElementById(iconId);
+  icon.addEventListener('click', () => {
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    icon.classList.toggle('bi-lock', !show);   // locked when hidden
+    icon.classList.toggle('bi-unlock', show);  // unlocked when visible
+  });
+}
 
-toggleIcon.addEventListener('click', () => {
-  if (passwordField.type === 'password') {
-    passwordField.type = 'text';
-    // Switch to the unlocked icon
-    toggleIcon.classList.remove('bi-lock');
-    toggleIcon.classList.add('bi-unlock');
-  } else {
-    passwordField.type = 'password';
-    // Switch back to the locked icon
-    toggleIcon.classList.remove('bi-unlock');
-    toggleIcon.classList.add('bi-lock');
-  }
-});
-
-
+setupReveal('password', 'passwordToggleIcon');
+setupReveal('confirmPassword', 'confirmToggleIcon');
 </script>
 
 </body>

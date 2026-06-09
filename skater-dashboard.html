@@ -44,6 +44,7 @@
     }
 
         .form-container {
+        top: 3vh;
         padding: 60px 20px;
         border-radius: 1rem;
         margin: auto;
@@ -96,9 +97,9 @@
     }
 
     .page-container {
-        width: 80vw;
+        width: 60vw;
         margin: auto;
-        margin-top: 4vh;
+        margin-top: 10vh;
     }
 
     .form-container > h1 {
@@ -108,26 +109,128 @@
         padding-left: 10px;
     }
 
+    .header-container > h1 {
+        color: white;
+        font-family: "Audiowide";
+        font-size: 32px;
+        font-weight: 100;
+        align-self: center;
+    }
+
+    .header-container > h1 > span {
+        color: #00e5a0;
+
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        /* background: red; */
+    }
+
+    .header-right {
+        display: flex;
+        flex-direction: row;
+        gap: 1vw;
+        align-self: center;
+    }
+
+    .header-right a {
+        color: red;
+        font-family: "Audiowide";
+        align-self: center;
+        padding-right: 10px;
+    }
+
+    .header-right > button {
+        background: none;
+        border: none;
+    }
+    
+    .header-right > button > img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: white;
+    }
 
 
+    .info-card {
+        /* GLASS MORPHISM */
+        padding: 40px 40px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255,255,255, 0.5),
+            inset 0 -1px 0 rgba(255,255,255,0.1),
+            inset 0 0 20px 10px rgba(255,255,255,0);
+        
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+    }
+
+    .info-card-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5vw;
+    }
 
 
 </style>
 
 <body>
 
+
+
+
     <div class="page-container">
-    <div class="form-container">
 
-        <h1>Welcome, [Skater Firstname]</h1>
-
-
-    </div>
-    </div>
+        <!-- WELCOME HEADER -->
+        <div class="header-container">
+        <h1>Welcome, <span>Nathaniel Baird</span></h1>
 
 
+        <!-- PROFILE MODAL/CUSTOMIZE -->
+            <div class="header-right">
+                <a><i class="bi bi-arrow-left"></i> Logout</a>
+                <button><img src="" alt=""></button>
+            </div>
+        </div>
 
+        <div class="info-card-grid">
 
+        <!-- CARD -->
+        <div class="info-card">
+
+        <!-- TITLE OF CARD -->
+        <div class="info-title-card">
+            <i class="bi bi-clock"></i>
+            SESSION
+        </div>
+
+        <!-- CONTENT OF CARD -->
+         <div class="info-card-content">
+            <h4>47 min</h4>
+         </div>
+
+        <!-- FOOTER OF CARD -->
+          <div class="info-card-footer">
+            left in your session
+          </div>
+
+          <!-- INDICATION -->
+          <div class="info-card-indie">
+            <div class="cirlce-card"></div>
+                On the ice
+          </div>
+
+           
 
 </body>
 </html>
