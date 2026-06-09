@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Page Title -->
-    <title>Login - RinkSync</title>
+    <title>Dashboard - RinkSync</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/dashboard.css">
@@ -15,222 +15,612 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
-    
+
     <!-- Boot-Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <!-- Preload -->
-     <link rel="preload" href="assets/css/dashboard.css">
-
-    
 </head>
 
 <style>
-
-     /* FONT */
-    .audiowide-regular {
-        font-family: "Audiowide", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-    }
+    /* ===== Base — same theme as login/signup ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
+        min-height: 100vh;
+        color: white;
+        font-family: "Bricolage Grotesque", sans-serif;
         background-color: rgb(10, 74, 138);
-    }
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+        background-image: radial-gradient(900px 500px at 50% -8%, rgba(255, 255, 255, 0.12), transparent 60%);
+        background-attachment: fixed;
     }
 
-        .form-container {
-        top: 3vh;
-        padding: 60px 20px;
-        border-radius: 1rem;
-        margin: auto;
-        justify-content: center;
-
-        /* GLASS MORPHISM */
-        background: rgba(255,255,255,0.1);
+    /* The shared glass look pulled straight from your form-container */
+    .glass {
+        background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.3);
-        box-shadow: 
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow:
             0 8px 32px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(255,255,255, 0.5),
-            inset 0 -1px 0 rgba(255,255,255,0.1),
-            inset 0 0 20px 10px rgba(255,255,255,0);
-        
+            inset 0 1px 0 rgba(255, 255, 255, 0.5),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.1);
         position: relative;
         overflow: hidden;
-        z-index: 10;
     }
-
-    .form-container::before {
-        content: '';
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.8),
-            transparent
-        );
-    }
-
-    .form-container::after {
+    .glass::before {
         content: '';
         position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    }
+
+    /* ===== Top bar ===== */
+    .topbar {
+        position: sticky;
         top: 0;
-        left: 0;
-        width: 1px;
-        height: 100%;
-        background: linear-gradient(
-            180deg,
-            rgba(255,255,255,0.8),
-            transparent,
-            rgba(255,255,255,0.3)
-        );
-    }
-
-    .page-container {
-        width: 60vw;
-        margin: auto;
-        margin-top: 10vh;
-    }
-
-    .form-container > h1 {
-        color: white;
-        font-family: "Audiowide";
-        font-weight: 100;
-        padding-left: 10px;
-    }
-
-    .header-container > h1 {
-        color: white;
-        font-family: "Audiowide";
-        font-size: 32px;
-        font-weight: 100;
-        align-self: center;
-    }
-
-    .header-container > h1 > span {
-        color: #00e5a0;
-
-    }
-
-    .header-container {
+        z-index: 30;
         display: flex;
-        flex-direction: row;
+        align-items: center;
         justify-content: space-between;
-        /* background: red; */
+        gap: 16px;
+        padding: 14px clamp(16px, 5vw, 48px);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
     }
-
-    .header-right {
+    .brand {
         display: flex;
-        flex-direction: row;
-        gap: 1vw;
-        align-self: center;
+        align-items: center;
+        gap: 11px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 1.35rem;
+        letter-spacing: 1px;
     }
+    .brand i { font-size: 1.3rem; }
 
-    .header-right a {
-        color: red;
-        font-family: "Audiowide";
-        align-self: center;
-        padding-right: 10px;
-    }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
 
-    .header-right > button {
-        background: none;
-        border: none;
-    }
-    
-    .header-right > button > img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: white;
-    }
-
-
-    .info-card {
-        /* GLASS MORPHISM */
-        padding: 40px 40px;
-        background: rgba(255,255,255,0.1);
+    .pill-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: 14px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 0.82rem;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.3);
-        box-shadow: 
-            0 8px 32px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(255,255,255, 0.5),
-            inset 0 -1px 0 rgba(255,255,255,0.1),
-            inset 0 0 20px 10px rgba(255,255,255,0);
-        
-        position: relative;
-        overflow: hidden;
-        z-index: 10;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
+    .pill-btn:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.16); }
+    .pill-btn .caret { font-size: 0.75rem; transition: transform 0.2s ease; }
+    #profileTrigger[aria-expanded="true"] .caret { transform: rotate(180deg); }
+    .pill-btn.logout:hover { border-color: rgba(255, 120, 120, 0.8); }
 
-    .info-card-grid {
+    /* ===== Profile dropdown ===== */
+    .profile-menu { position: relative; }
+    .dropdown {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        width: 230px;
+        padding: 8px;
+        z-index: 40;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .dropdown.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .dd-item {
         display: flex;
-        flex-direction: row;
-        gap: 1.5vw;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 11px 12px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: white;
+        font-family: inherit;
+        font-size: 0.92rem;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.13s ease;
+    }
+    .dd-item:hover { background: rgba(255, 255, 255, 0.14); }
+    .dd-item i { font-size: 1.05rem; }
+
+    /* ===== Page layout ===== */
+    .page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: clamp(20px, 5vw, 40px) clamp(16px, 5vw, 48px) 56px;
     }
 
+    .welcome { text-align: center; margin-bottom: 34px; }
+    .tw {
+        font-family: "Audiowide", sans-serif;
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        color: #e2e8f0;
+        min-height: 1.2em;
+    }
+    .tw .cursor { animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .welcome p { margin-top: 10px; color: rgba(255, 255, 255, 0.75); font-size: 0.95rem; }
 
+    .grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 22px;
+    }
+
+    .card { padding: 26px 24px; }
+    .card h2 {
+        font-family: "Audiowide", sans-serif;
+        font-weight: 100;
+        font-size: 1.15rem;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* ===== Music uploads ===== */
+    .dropzone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 26px;
+        border-radius: 16px;
+        border: 2px dashed rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .dropzone:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.7); }
+    .dropzone i { font-size: 1.9rem; }
+    .dropzone .hint { font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); }
+    .dropzone input { display: none; }
+
+    .track-list { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+    .track {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 14px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .track .ico {
+        display: grid; place-items: center;
+        flex: none;
+        width: 34px; height: 34px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.12);
+        font-size: 1rem;
+    }
+    .track .meta { flex: 1; min-width: 0; }
+    .track .name { font-size: 0.9rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .track .tags { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px; }
+    .track .tags span {
+        font-size: 0.68rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .icon-btn {
+        flex: none;
+        width: 32px; height: 32px;
+        display: grid; place-items: center;
+        border: none;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        cursor: pointer;
+        transition: background 0.15s ease;
+    }
+    .icon-btn:hover { background: rgba(255, 120, 120, 0.35); }
+
+    .upload-actions { margin-top: 16px; display: flex; justify-content: flex-end; }
+
+    /* ===== Tags ===== */
+    .tag-add { display: flex; gap: 8px; }
+    .input-line {
+        flex: 1;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid white;
+        color: white;
+        font-family: inherit;
+        font-size: 0.95rem;
+        padding: 8px 4px;
+        outline: none;
+    }
+    .input-line::placeholder { color: rgba(255, 255, 255, 0.55); }
+    .tag-cloud { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 9px; }
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 13px;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+    .tag button {
+        border: none;
+        background: none;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        font-size: 0.9rem;
+        line-height: 1;
+        padding: 0;
+        display: grid;
+        place-items: center;
+    }
+    .tag button:hover { color: white; }
+
+    /* ===== Buttons ===== */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 24px;
+        border-radius: 16px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 0.85rem;
+        color: white;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(6px);
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .btn.primary { background: rgba(10, 115, 219, 0.6); border-color: rgba(120, 180, 255, 0.6); }
+
+    /* ===== Profile modal ===== */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(4, 30, 58, 0.55);
+        backdrop-filter: blur(3px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal {
+        width: min(440px, 100%);
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 30px 28px;
+        transform: translateY(12px) scale(0.98);
+        transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-overlay.open .modal { transform: none; }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .modal-head h2 { border: none; padding: 0; margin: 0; }
+    .modal-close {
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        width: 34px; height: 34px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+    .modal-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+    .field { margin-bottom: 20px; }
+    .field > label {
+        display: block;
+        margin-bottom: 9px;
+        font-size: 0.8rem;
+        letter-spacing: 0.3px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .field select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 11px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: white;
+        font-family: inherit;
+        font-size: 0.92rem;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+    }
+    .field select option { background: rgb(10, 74, 138); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+    .chip { cursor: pointer; }
+    .chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .chip span {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        transition: all 0.15s ease;
+    }
+    .chip:hover span { border-color: rgba(255, 255, 255, 0.6); }
+    .chip:has(input:checked) span {
+        background: rgba(10, 115, 219, 0.7);
+        border-color: rgba(120, 180, 255, 0.8);
+    }
+
+    .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 26px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    :focus-visible { outline: 2px solid white; outline-offset: 2px; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 800px) {
+        .grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+        .brand span { display: none; }
+        .pill-btn { padding: 9px 13px; }
+    }
 </style>
 
 <body>
 
+    <!-- ===== Top bar ===== -->
+    <header class="topbar glass">
+        <div class="brand"><i class="bi bi-snow2"></i> <span>RinkSync</span></div>
 
-
-
-    <div class="page-container">
-
-        <!-- WELCOME HEADER -->
-        <div class="header-container">
-        <h1>Welcome, <span>Nathaniel Baird</span></h1>
-
-
-        <!-- PROFILE MODAL/CUSTOMIZE -->
-            <div class="header-right">
-                <a><i class="bi bi-arrow-left"></i> Logout</a>
-                <button><img src="" alt=""></button>
+        <div class="top-actions">
+            <div class="profile-menu">
+                <button class="pill-btn" id="profileTrigger" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i> Profile
+                    <i class="bi bi-chevron-down caret"></i>
+                </button>
+                <div class="dropdown glass" id="profileDropdown" role="menu">
+                    <button class="dd-item" id="openCustomise" role="menuitem">
+                        <i class="bi bi-sliders"></i> Customise profile
+                    </button>
+                </div>
             </div>
+
+            <a href="logout.php" class="pill-btn logout"><i class="bi bi-box-arrow-right"></i> Log out</a>
         </div>
+    </header>
 
-        <div class="info-card-grid">
+    <!-- ===== Page ===== -->
+    <main class="page">
 
-        <!-- CARD -->
-        <div class="info-card">
+        <section class="welcome">
+            <div class="tw"><span id="t"></span><span class="cursor">|</span></div>
+            <p>Manage your music, tags and profile for the rink.</p>
+        </section>
 
-        <!-- TITLE OF CARD -->
-        <div class="info-title-card">
-            <i class="bi bi-clock"></i>
-            SESSION
+        <div class="grid">
+
+            <!-- Music uploads -->
+            <section class="glass card">
+                <h2><i class="bi bi-music-note-beamed"></i> Music uploads</h2>
+
+                <form action="upload.php" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <label class="dropzone" for="musicInput">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                        <span>Click to choose audio files</span>
+                        <span class="hint">MP3, WAV or M4A &middot; added to the rink PC on upload</span>
+                        <input type="file" id="musicInput" name="tracks[]" accept="audio/*" multiple>
+                    </label>
+
+                    <ul class="track-list" id="trackList">
+                        <!-- Example of an already-uploaded track (render these from PHP) -->
+                        <li class="track">
+                            <span class="ico"><i class="bi bi-music-note"></i></span>
+                            <div class="meta">
+                                <div class="name">[Existing track].mp3</div>
+                                <div class="tags"><span>General skate</span><span>Upbeat</span></div>
+                            </div>
+                            <button type="button" class="icon-btn" title="Remove"><i class="bi bi-trash"></i></button>
+                        </li>
+                    </ul>
+
+                    <div class="upload-actions">
+                        <button type="submit" class="btn primary"><i class="bi bi-upload"></i> Upload</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Tags -->
+            <section class="glass card">
+                <h2><i class="bi bi-tags"></i> Tags</h2>
+
+                <div class="tag-add">
+                    <input type="text" class="input-line" id="tagInput" placeholder="New tag name...">
+                    <button type="button" class="btn" id="addTag"><i class="bi bi-plus-lg"></i></button>
+                </div>
+
+                <div class="tag-cloud" id="tagCloud">
+                    <!-- Render these from PHP; the x removes one -->
+                    <span class="tag">General skate <button type="button" aria-label="Remove tag">&times;</button></span>
+                    <span class="tag">Warm-up <button type="button" aria-label="Remove tag">&times;</button></span>
+                    <span class="tag">Disco <button type="button" aria-label="Remove tag">&times;</button></span>
+                    <span class="tag">Upbeat <button type="button" aria-label="Remove tag">&times;</button></span>
+                    <span class="tag">Announcement bed <button type="button" aria-label="Remove tag">&times;</button></span>
+                </div>
+            </section>
+
         </div>
+    </main>
 
-        <!-- CONTENT OF CARD -->
-         <div class="info-card-content">
-            <h4>47 min</h4>
-         </div>
+    <!-- ===== Profile customise modal ===== -->
+    <div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="glass modal">
+            <div class="modal-head">
+                <h2 id="modalTitle"><i class="bi bi-sliders"></i> Customise profile</h2>
+                <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            </div>
 
-        <!-- FOOTER OF CARD -->
-          <div class="info-card-footer">
-            left in your session
-          </div>
+            <form action="profile.php" method="post">
+                <div class="field">
+                    <label for="displayname">Display name</label>
+                    <input type="text" class="input-line" id="displayname" name="displayname"
+                           value="[Firstname]" style="width:100%;">
+                </div>
 
-          <!-- INDICATION -->
-          <div class="info-card-indie">
-            <div class="cirlce-card"></div>
-                On the ice
-          </div>
+                <div class="field">
+                    <label>Skater level</label>
+                    <div class="chips" role="radiogroup" aria-label="Skater level">
+                        <label class="chip"><input type="radio" name="level" value="first-timer"><span>First timer</span></label>
+                        <label class="chip"><input type="radio" name="level" value="beginner" checked><span>Beginner</span></label>
+                        <label class="chip"><input type="radio" name="level" value="intermediate"><span>Intermediate</span></label>
+                        <label class="chip"><input type="radio" name="level" value="advanced"><span>Advanced</span></label>
+                    </div>
+                </div>
 
-           
+                <div class="field">
+                    <label for="coach">Preferred coach</label>
+                    <select id="coach" name="coach">
+                        <option value="">No preference</option>
+                        <option value="1">[Coach name]</option>
+                        <option value="2">[Coach name]</option>
+                        <option value="3">[Coach name]</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn" id="modalCancel">Cancel</button>
+                    <button type="submit" class="btn primary"><i class="bi bi-check-lg"></i> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ----- Welcome typewriter (replaces your typewriter.js for this page) -----
+        (function () {
+            const el = document.getElementById('t');
+            const text = "Welcome, [Firstname]";   // swap [Firstname] for the logged-in user
+            let i = 0;
+            (function type() {
+                if (i <= text.length) {
+                    el.textContent = text.slice(0, i++);
+                    setTimeout(type, 70);
+                }
+            })();
+        })();
+
+        // ----- Profile dropdown -----
+        (function () {
+            const trigger = document.getElementById('profileTrigger');
+            const menu = document.getElementById('profileDropdown');
+            function close() { menu.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const open = menu.classList.toggle('open');
+                trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            document.addEventListener('click', function (e) {
+                if (!menu.contains(e.target) && !trigger.contains(e.target)) close();
+            });
+            window.closeProfileMenu = close;
+        })();
+
+        // ----- Profile modal -----
+        (function () {
+            const modal = document.getElementById('profileModal');
+            const open = document.getElementById('openCustomise');
+            const closeBtn = document.getElementById('modalClose');
+            const cancel = document.getElementById('modalCancel');
+            function show() { window.closeProfileMenu(); modal.classList.add('open'); }
+            function hide() { modal.classList.remove('open'); }
+            open.addEventListener('click', show);
+            closeBtn.addEventListener('click', hide);
+            cancel.addEventListener('click', hide);
+            modal.addEventListener('click', function (e) { if (e.target === modal) hide(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('open')) hide();
+            });
+        })();
+
+        // ----- Show chosen files in the track list (client-side preview) -----
+        (function () {
+            const input = document.getElementById('musicInput');
+            const list = document.getElementById('trackList');
+            input.addEventListener('change', function () {
+                Array.from(input.files).forEach(function (file) {
+                    const li = document.createElement('li');
+                    li.className = 'track';
+                    li.innerHTML =
+                        '<span class="ico"><i class="bi bi-music-note"></i></span>' +
+                        '<div class="meta"><div class="name"></div>' +
+                        '<div class="tags"><span>Untagged</span></div></div>' +
+                        '<button type="button" class="icon-btn" title="Remove"><i class="bi bi-trash"></i></button>';
+                    li.querySelector('.name').textContent = file.name;
+                    list.appendChild(li);
+                });
+            });
+            list.addEventListener('click', function (e) {
+                const btn = e.target.closest('.icon-btn');
+                if (btn) btn.closest('.track').remove();
+            });
+        })();
+
+        // ----- Add / remove tags -----
+        (function () {
+            const input = document.getElementById('tagInput');
+            const cloud = document.getElementById('tagCloud');
+            const addBtn = document.getElementById('addTag');
+            function addTag() {
+                const name = input.value.trim();
+                if (!name) return;
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.textContent = name + ' ';
+                const x = document.createElement('button');
+                x.type = 'button';
+                x.setAttribute('aria-label', 'Remove tag');
+                x.innerHTML = '&times;';
+                tag.appendChild(x);
+                cloud.appendChild(tag);
+                input.value = '';
+                input.focus();
+            }
+            addBtn.addEventListener('click', addTag);
+            input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addTag(); } });
+            cloud.addEventListener('click', function (e) {
+                if (e.target.tagName === 'BUTTON') e.target.closest('.tag').remove();
+            });
+        })();
+    </script>
 
 </body>
 </html>
