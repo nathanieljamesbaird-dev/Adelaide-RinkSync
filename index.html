@@ -10,6 +10,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/transition.css">
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +24,8 @@
      <link rel="preload" href="assets/js/typewriter.js">
      <link rel="preload" href="assets/js/snow.js">
      <link rel="preload" href="assets/css/style.css">
+     <link rel="prefetch" href="/register.html">
+
 
     
 </head>
@@ -72,6 +75,16 @@
 
 
 
+<script type="speculationrules">
+{
+  "prerender": [
+    {
+      "source": "list",
+      "urls": ["/register.html"]
+    }
+  ]
+}
+</script>
 
 
 
